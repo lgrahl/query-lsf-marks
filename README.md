@@ -33,8 +33,7 @@ Open the command prompt and execute the following commands:
 
 ## Usage
 
-Copy `query-lsf.py` into a folder.
-Open a terminal and run it with:
+Change into the folder of the repository and run the script with the following command:
 
 ```bash
 $ python3 query-lsf.py <username> <interval>
