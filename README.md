@@ -46,7 +46,7 @@ $ python3 query-lsf.py <username> <interval>
 * `<interval>` is the interval in **minutes** that defines how often the LSF will be
   queried.
 
-### Delete Or Change Password
+### Delete or Change Password
 
 If the script runs in the background, stop it first.
 
