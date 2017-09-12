@@ -1,21 +1,39 @@
 # query-lsf-marks
 
-Query the LSF (also known as *qis server*) and show a desktop
+Query the FH Münster LSF (also known as *qis server*) and show a desktop
 notification on changes to your marks.
 
 ## Prerequisites
 
-### Linux
-
-#### Virtual Environment
-
-We recommend using the [virtualenv](http://virtualenv.readthedocs.org/en/latest/)
-package to create an isolated Python environment:
+### Ubuntu
 
 ```bash
-$ sudo apt-get install python-virtualenv
-$ virtualenv -p python3 --system-site-packages query-lsf-venv
+$ sudo apt-get install python3 python3-pip python3-dbus
 ```
+
+### Windows
+
+* [Python3](https://www.python.org/downloads/)
+* [pip](https://pip.pypa.io/en/latest/installing.html)
+* [Growl](http://www.growlforwindows.com)
+
+## Virtual Environment
+
+We recommend using [venv](https://docs.python.org/3/library/venv.html) to create an
+isolated Python environment:
+
+```bash
+$ python3 -m venv query-lsf-venv
+```
+
+Edit the file `query-lsf-venv/pyvenv.cfg` and update the following line:
+
+```
+include-system-site-packages = true
+```
+
+Note: This is a workaround to be able to use system site packages but have a separate
+`pip` environment, too.
 
 You can switch into the created virtual environment *query-lsf-venv*
 by running this command:
@@ -24,41 +42,35 @@ by running this command:
 $ source query-lsf-venv/bin/activate
 ```
 
-While you are in the virtual environment, you can install Python
-packages without affecting the global environment.
+While the virtual environment is active, all packages installed using ``pip`` will be
+installed into this environment.
 
-The following command can be used to deactivate the environment:
+To deactivate the virtual environment, just run:
 
 ```bash
 $ deactivate
 ```
 
-#### Dependencies
+## Installation
 
 If you are using a virtual environment, activate it first.
 
-Open a terminal and execute the following commands:
+Install the module by running:
 
 ```bash
-$ sudo apt-get install mercurial python3 python3-keyring python3-pip
-$ pip3 install notify2 requests beautifulsoup4
-$ pip3 install hg+https://vcs.zwuenf.org/hg/lgrahl/zwnflibs/logging hg+https://vcs.zwuenf.org/hg/lgrahl/zwnflibs/notify
-$ pip3 install hg+https://vcs.zwuenf.org/hg/lgrahl/zwnfqan
+$ pip install git+https://github.com/lgrahl/query-lsf-marks.git
 ```
 
-### Windows
+On Linux, you will also need to install `notify2`:
 
-* Install [Python3](https://www.python.org/downloads/)
-* Install [pip](https://pip.pypa.io/en/latest/installing.html)
-* Install [Mercurial](http://mercurial.selenic.com)
-* Install [Growl](http://www.growlforwindows.com)
+```bash
+$ pip install notify2
+```
 
-Open the command prompt and execute the following commands:
+On Windows, you will need to install `gntp`:
 
 ```
-> <Path to Python Scripts>\pip.exe install keyring gntp requests beautifulsoup4
-> <Path to Python Scripts>\pip.exe install hg+https://vcs.zwuenf.org/hg/lgrahl/zwnflibs/logging hg+https://vcs.zwuenf.org/hg/lgrahl/zwnflibs/notify
-> <Path to Python Scripts>\pip.exe install hg+https://vcs.zwuenf.org/hg/lgrahl/zwnfqan
+> <Path to Python Scripts>\pip.exe install gntp
 ```
 
 ## Usage
@@ -79,17 +91,10 @@ $ python3 query-lsf.py <username> <interval>
 
 If the script runs in the background, stop it first.
 
-Open a terminal and run Python in interactive mode:
-
-```bash
-$ python3
-```
-
 Delete the current password of `<username>`:
 
-```python
->>> import keyring
->>> keyring.delete_password('query-lsf', '<username>')
+```bash
+$ python3 -m keyring del query-lsf <username>
 ```
 
 If you run query-lsf again it will request a password.
