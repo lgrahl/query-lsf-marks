@@ -78,7 +78,7 @@ On Windows, you will need to install `gntp`:
 Change into the folder of the repository and run the script with the following command:
 
 ```bash
-$ python3 query-lsf.py <username> <interval> [<storage>]
+$ query-lsf <username> <interval> [<storage>]
 ```
 
 * `<username>` is your user name in the LSF. The password will be requested once and
