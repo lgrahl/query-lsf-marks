@@ -1,22 +1,19 @@
+import getpass
 import sys
 import time
-import getpass
 
 import keyring
-
 from logbook import (
     Logger,
     StderrHandler,
 )
-from .notify import (
-    register,
-)
 
 from . import (
-    SERVICE_NAME,
     DEFAULT_STORAGE_PATH,
+    SERVICE_NAME,
     query_once,
 )
+from .notify import register
 
 
 def main():
@@ -26,7 +23,8 @@ def main():
 
         # Parameters
         if len(sys.argv) < 3:
-            log.critical('Usage: query-lsf.py <username> <interval (seconds)> [storage]')
+            log.critical(
+                'Usage: query-lsf.py <username> <interval (minutes)> [<storage>]')
             sys.exit(1)
         path = sys.argv[3] if len(sys.argv) > 3 else DEFAULT_STORAGE_PATH
 
@@ -58,6 +56,7 @@ def main():
         except Exception:
             log.critical('Exiting due to exception')
             raise
+
 
 if __name__ == "__main__":
     main()

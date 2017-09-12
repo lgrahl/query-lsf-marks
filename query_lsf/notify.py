@@ -78,6 +78,7 @@ class AbstractNotification:
         """Close the notification."""
         raise NotImplementedError()
 
+
 Notification = AbstractNotification
 
 
@@ -96,9 +97,9 @@ def register(name):
 
 
 if notify2:
-    register = notify2.init
+    register = notify2.init  # noqa: F811
 
-    class Notification(AbstractNotification):
+    class Notification(AbstractNotification):  # noqa: F811
         """
         Adapter for :class:`notify2.Notification`.
         """
@@ -128,7 +129,7 @@ if gntp:
 
     register = _register
 
-    class Notification(AbstractNotification):
+    class Notification(AbstractNotification):  # noqa: F811
         """
         Adapter for :class:`gntp.notifier.GrowlNotifier`.
         """

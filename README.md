@@ -1,7 +1,7 @@
 # query-lsf-marks
 
-Query the FH Münster LSF (also known as *qis server*) and show a desktop
-notification on changes to your marks.
+Query the LSF (also known as *qis server*) and show a desktop notification on changes to
+your marks.
 
 ## Prerequisites
 
@@ -78,14 +78,15 @@ On Windows, you will need to install `gntp`:
 Change into the folder of the repository and run the script with the following command:
 
 ```bash
-$ python3 query-lsf.py <username> <interval>
+$ python3 query-lsf.py <username> <interval> [<storage>]
 ```
 
 * `<username>` is your user name in the LSF. The password will be requested once and
   stored in a secure keyring of your OS.
-
 * `<interval>` is the interval in **minutes** that defines how often the LSF will be
   queried.
+* `<storage>` is an optional path to a JSON file where the marks will be stored. Defaults
+  to `.query-lsf-marks.json` and will be created if it does not exist.
 
 ### Delete or Change Password
 

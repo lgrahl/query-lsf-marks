@@ -3,8 +3,8 @@ import os
 import sys
 
 from setuptools import (
-    setup,
     find_packages,
+    setup,
 )
 
 
@@ -59,9 +59,9 @@ setup(
     # PyPI metadata
     author='Lennart Grahl',
     author_email='lennart.grahl@gmail.com',
-    description='Query the FH-Münster LSF for (new) marks.',
+    description='Query the LSF (qis server) for (new) marks.',
     license='MIT',
-    keywords='fh-muenster muenster marks lsf',
+    keywords='lsf qis marks university',
     url='https://github.com/lgrahl/query-lsf-marks',
     classifiers=[
         'Development Status :: 4 - Beta',
